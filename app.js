@@ -1,11 +1,18 @@
-let prompt = require("prompt")
+import inquirer from 'inquirer';
 
-prompt.start();
-
-prompt.get(['username', "name"], function(err, result) {
-    let user = {
-        "username": result.username,
-        "name": result.name
+inquirer
+  .prompt([
+    {
+      name: "first_name",
+      type: "input",
+      message: "What is your first name?",
+    },
+    {
+      name: "last_name",
+      type: "input",
+      message: "What is your last name?"
     }
-    console.log(user);
-})
+  ])
+  .then((answer) => {
+    console.log(answer.first_name, answer.last_name);
+  });
