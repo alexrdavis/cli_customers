@@ -1,1 +1,2 @@
 {"username": "bobz", "name": "bob", "email": "bob@bobsburgers.com", "number:" 600-000-000, "id:" 1}
+{"username": "linda", "name": "burger", "email": "linda@bobsburgers.com", "number:" 601-000-000, "id:" 2}

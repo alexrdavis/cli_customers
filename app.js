@@ -1,4 +1,7 @@
 import inquirer from 'inquirer';
+import { syncReadFile }  from "../cli_customers/data/import_data.js"
+
+let filePath = "../cli_customers/data/customers.txt";
 
 inquirer
   .prompt([
@@ -15,4 +18,5 @@ inquirer
   ])
   .then((answer) => {
     console.log(answer.first_name, answer.last_name);
+    console.log(syncReadFile(filePath))
   });
