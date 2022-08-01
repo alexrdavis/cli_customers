@@ -5,7 +5,7 @@ export function syncReadFile(filename) {
 
   const arr = contents.split(/\r?\n/);
 
-  console.log(arr); // 👉️ ['One', 'Two', 'Three', 'Four']
+  console.log(arr); 
 
   return arr;
 }
