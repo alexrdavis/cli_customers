@@ -1,22 +1,27 @@
 import inquirer from 'inquirer';
-import { syncReadFile }  from "../cli_customers/data/import_data.js"
-
-let filePath = "../cli_customers/data/customers.txt";
+import { readAllCustomers, readCustomerById } from "../cli_customers/operations/read.js"
 
 inquirer
   .prompt([
     {
-      name: "first_name",
-      type: "input",
-      message: "What is your first name?",
-    },
-    {
-      name: "last_name",
-      type: "input",
-      message: "What is your last name?"
+      name: "operation",
+      type: "list",
+      message: "Would you like to Create, Read, Update or Delete?",
+      choices: [
+        "Create",
+        "Read",
+        "Read All",
+        "Update",
+        "Delete"
+      ]
     }
   ])
   .then((answer) => {
-    console.log(answer.first_name, answer.last_name);
-    console.log(syncReadFile(filePath))
+    // if read operation, return read by id
+    if(answer.operation == "Read") {
+      console.log(readCustomerById(1))
+    // if read all operation, return all customers
+    } else if(answer.operation == "Read All") {
+      readAllCustomers()
+    }
   });

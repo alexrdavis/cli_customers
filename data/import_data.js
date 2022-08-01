@@ -1,13 +1,21 @@
 import {readFileSync, promises as fsPromises} from "fs";
 
-export function syncReadFile(filename) {
-  const contents = readFileSync(filename, 'utf-8');
+export function importCustomers(filename) {
+  const contents = readFileSync(filename, "utf-8");
 
-  const arr = contents.split(/\r?\n/);
+  let arr = contents.split(/\r?\n/); 
+  let newArray = [];
 
-  console.log(arr); 
+  for(let i = 0; i < arr.length; i++) {
+      try {
+          const obj = JSON.parse(arr[i])
+          newArray.push(obj)
+      } catch (err) {
+          err
+      }
+  }
 
-  return arr;
+  return newArray;
 }
 
 
