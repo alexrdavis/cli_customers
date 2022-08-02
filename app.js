@@ -38,6 +38,7 @@ inquirer
         {name: "getName", type: "input", message:"Enter name: "}, 
         {name:"getEmail", type:"input", message:"Enter email: "}])
       .then(response => {
+        // customer object to add
         let customer = {
           "username": response.getUsername,
           "name":  response.getName,

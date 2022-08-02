@@ -2,4 +2,3 @@
 {"username":"linda","name":"burger","email":"linda@bobsburgers.com","id":2}
 {"username":"lilburger","name":"louis","email":"louis@bobsburgers.com","id":3}
 {"username":"glassesBurger","name":"tina","email":"tina@bobsburgers.com","id":4}
-{"username":"geneBurger","name":"Gene","email":"genez@bobsburgers.com","id":5}
