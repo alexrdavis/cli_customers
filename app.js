@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import { readAllCustomers, readCustomerById } from "../cli_customers/operations/read.js"
 import { deleteCustomer } from "../cli_customers/operations/delete.js"
-import { createCustomer } from "../cli_customers/operations/create.js"
+import { createCustomer, highestId } from "../cli_customers/operations/create.js"
 
 inquirer
   .prompt([
@@ -43,7 +43,7 @@ inquirer
           "username": response.getUsername,
           "name":  response.getName,
           "email": response.getEmail,
-          "id": 5
+          "id": highestId()
         }
         console.log(createCustomer(customer))
       })
