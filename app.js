@@ -48,5 +48,5 @@ inquirer
         console.log(createCustomer(customer))
       })
 
-    }
+    } 
   });

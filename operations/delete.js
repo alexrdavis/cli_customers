@@ -15,7 +15,6 @@ export function deleteCustomer(id) {
             // remove from array
             let index = arr.indexOf(arr[i])
             arr.splice(index, 1)
-            break;
         }
         // append to file with the array of the removed customer
         fs.appendFile("../cli_customers/data/customers.txt", JSON.stringify(arr[i])+"\n", function(){})
