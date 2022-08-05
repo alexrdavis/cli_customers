@@ -5,8 +5,9 @@ let customers = importCustomers("../cli_customers/data/customers.txt")
 
 // Read imported data for all customers
 export function readAllCustomers() {
-    console.log(customers);
-    return customers;
+    let sorted = customers.sort((a,b) => a.id-b.id)
+    console.log(sorted)
+    return sorted
 }
 
 // Read imported data for one customer
