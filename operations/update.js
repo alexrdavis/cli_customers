@@ -1,8 +1,6 @@
 import fs from "fs"
-import {readAllCustomers} from "../operations/read.js"
 import {deleteCustomer} from "../operations/delete.js"
 
-let readAll = readAllCustomers()
 
 export function updateCustomer(updatedCustomer, id) {
     // delete customer that needs updating

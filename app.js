@@ -58,9 +58,11 @@ inquirer
           {name: "getName", type: "input", message: "Enter name if updating"},
           {name: "getEmail", type: "input", message: "Enter email if updating"}
         ]).then(res => {
-          customer.username = res.getUsername
-          customer.name = res.getName
-          customer.email = res.getEmail
+
+          res.getUsername == "" ? customer.username = customer.username : customer.username = res.getUsername;
+          res.getName == "" ? customer.name = customer.name : customer.name = res.getName;
+          res.getEmail == "" ? customer.email = customer.email : customer.email = res.getEmail;
+
           updateCustomer(customer, response.getId)
         })
       })
