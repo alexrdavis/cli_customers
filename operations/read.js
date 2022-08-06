@@ -20,3 +20,12 @@ export function readCustomerById(id) {
         }
     }
 }
+
+// Read by username
+export function readCustomerByUsername(username) {
+    for(let i = 0; i < customers.length; i++) {
+        if(customers[i].username == username) {
+            return customers[i]
+        }
+    }
+}

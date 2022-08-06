@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { readAllCustomers, readCustomerById } from "../cli_customers/operations/read.js"
+import { readAllCustomers, readCustomerById, readCustomerByUsername } from "../cli_customers/operations/read.js"
 import { deleteCustomer } from "../cli_customers/operations/delete.js"
 import { createCustomer, highestId } from "../cli_customers/operations/create.js"
 import { updateCustomer } from "../cli_customers/operations/update.js"
@@ -12,7 +12,8 @@ inquirer
       message: "Would you like to Create, Read, Update or Delete?",
       choices: [
         "Create",
-        "Read",
+        "Read By ID",
+        "Read By Username",
         "Read All",
         "Update",
         "Delete"
@@ -21,10 +22,13 @@ inquirer
   ])
   .then((answer) => {
     // Read Operation
-    if(answer.operation == "Read") {
+    if(answer.operation == "Read By ID") {
       inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}])
       .then(response => {console.log(readCustomerById(response.getId))})
     // Read All Operation
+    } else if (answer.operation == "Read By Username") {
+      inquirer.prompt([{name: "getUsername", type: "input", message:"Enter customer username"}])
+      .then(response => {console.log(readCustomerByUsername(response.getUsername))})
     } else if(answer.operation == "Read All") {
       readAllCustomers()
     // Delete Operation
