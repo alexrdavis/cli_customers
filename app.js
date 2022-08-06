@@ -21,54 +21,56 @@ inquirer
     }
   ])
   .then((answer) => {
-    // Read Operation
-    if(answer.operation == "Read By ID") {
-      inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}])
-      .then(response => {console.log(readCustomerById(response.getId))})
-    // Read All Operation
-    } else if (answer.operation == "Read By Username") {
-      inquirer.prompt([{name: "getUsername", type: "input", message:"Enter customer username"}])
-      .then(response => {console.log(readCustomerByUsername(response.getUsername))})
-    } else if(answer.operation == "Read All") {
-      readAllCustomers()
-    // Delete Operation
-    } else if(answer.operation == "Delete") {
-      inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}])
-      .then(response => {console.log(deleteCustomer(response.getId))})
-    // Create Operation
-    } else if (answer.operation == "Create") {
-      inquirer.prompt([
-        {name: "getUsername", type: "input", message:"Enter username:"}, 
-        {name: "getName", type: "input", message:"Enter name: "}, 
-        {name:"getEmail", type:"input", message:"Enter email: "}])
-      .then(response => {
-        // customer object to add
-        let customer = {
-          "username": response.getUsername,
-          "name":  response.getName,
-          "email": response.getEmail,
-          "id": highestId()
-        }
-        console.log(createCustomer(customer))
-      })
-    // Update operation
-    } else if(answer.operation == "Update") {
-      inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}]) 
-      .then(response => {
-        // read by id to get customer
-        let customer = readCustomerById(response.getId) 
-        inquirer.prompt([
-          {name: "getUsername", type: "input", message:"Enter username if updating"},
-          {name: "getName", type: "input", message: "Enter name if updating"},
-          {name: "getEmail", type: "input", message: "Enter email if updating"}
-        ]).then(res => {
-
-          res.getUsername == "" ? customer.username = customer.username : customer.username = res.getUsername;
-          res.getName == "" ? customer.name = customer.name : customer.name = res.getName;
-          res.getEmail == "" ? customer.email = customer.email : customer.email = res.getEmail;
-
-          updateCustomer(customer, response.getId)
-        })
-      })
-    } 
+    switch(answer.operation) {
+        case "Read By ID":
+            inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}])
+            .then(response => {console.log(readCustomerById(response.getId))})
+            break;
+        case "Read By Username":
+            inquirer.prompt([{name: "getUsername", type: "input", message:"Enter customer username"}])
+            .then(response => {console.log(readCustomerByUsername(response.getUsername))})
+            break;
+        case "Read All":
+            readAllCustomers()
+            break;
+        case "Delete": 
+            inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}])
+            .then(response => {console.log(deleteCustomer(response.getId))})
+            break;
+        case "Create":
+            inquirer.prompt([
+                {name: "getUsername", type: "input", message:"Enter username:"}, 
+                {name: "getName", type: "input", message:"Enter name: "}, 
+                {name:"getEmail", type:"input", message:"Enter email: "}])
+            .then(response => {
+                // customer object to add
+                let customer = {
+                  "username": response.getUsername,
+                  "name":  response.getName,
+                  "email": response.getEmail,
+                  "id": highestId()
+                }
+                console.log(createCustomer(customer))
+            })
+            break;
+        case "Update":
+            inquirer.prompt([{name: "getId", type: "input", message:"Enter customer ID"}]) 
+            .then(response => {
+              // read by id to get customer
+              let customer = readCustomerById(response.getId) 
+              inquirer.prompt([
+                {name: "getUsername", type: "input", message:"Enter username if updating"},
+                {name: "getName", type: "input", message: "Enter name if updating"},
+                {name: "getEmail", type: "input", message: "Enter email if updating"}
+              ]).then(res => {
+      
+                res.getUsername == "" ? customer.username = customer.username : customer.username = res.getUsername;
+                res.getName == "" ? customer.name = customer.name : customer.name = res.getName;
+                res.getEmail == "" ? customer.email = customer.email : customer.email = res.getEmail;
+      
+                updateCustomer(customer, response.getId)
+              })
+            })
+            break;     
+    }
   });
